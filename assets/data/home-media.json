@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "titulo": "Transporte de Maquinaria",
+    "descripcion": "Ideal para equipos pesados o industriales, con grúas y seguridad especializada.",
+   "imagen": "assets/img/service-1.jpg",
+    "precio_base": 50000,
+    "tipo": "maquinaria"
+  },
+  {
+    "id": 2,
+    "titulo": "Transporte de Materiales",
+    "descripcion": "Movemos materiales de construcción o industriales con eficiencia y puntualidad.",
+    "imagen": "assets/img/service-1.jpg",
+    "precio_base": 40000,
+    "tipo": "materiales"
+  },
+  {
+    "id": 3,
+    "titulo": "Mudanzas y Traslados",
+    "descripcion": "Servicio completo de mudanza con opción de ayudantes y embalaje profesional.",
+    "imagen": "assets/img/service-1.jpg",
+    "precio_base": 35000,
+    "tipo": "mudanzas"
+  }
+]

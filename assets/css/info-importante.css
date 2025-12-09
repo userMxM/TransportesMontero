@@ -1,0 +1,371 @@
+
+/* ============================================================
+   CARDS PRINCIPALES
+   ============================================================ */
+.info-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.4s ease;
+    border: 2px solid #f0f0f0;
+}
+
+.info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    border-color: #667eea;
+}
+
+.info-card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.info-card-header i {
+    font-size: 2rem;
+}
+
+.info-card-header h4 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.info-card-body {
+    padding: 2rem;
+}
+
+.info-card-footer {
+    background: #f8f9fa;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+    color: #6c757d;
+}
+
+.info-card-footer i {
+    margin: 0 5px;
+}
+
+/* ============================================================
+   TIPO DE CAMBIO - EXCHANGE CARD
+   ============================================================ */
+.exchange-card .currency-conversion {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.from-currency,
+.to-currency {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.from-currency .flag,
+.to-currency .flag {
+    font-size: 3rem;
+}
+
+.from-currency .amount {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.to-currency .amount {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.conversion-arrow {
+    margin: 1.5rem 0;
+    animation: bounce-arrow 2s ease-in-out infinite;
+}
+
+.conversion-arrow i {
+    font-size: 2.5rem;
+    color: #667eea;
+}
+
+@keyframes bounce-arrow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+.quick-conversions {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+}
+
+.conversion-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.conversion-row:last-child {
+    border-bottom: none;
+}
+
+/* ============================================================
+   DÍAS FERIADOS - HOLIDAYS CARD
+   ============================================================ */
+.holidays-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.holidays-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.holidays-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.holidays-list::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 10px;
+}
+
+.holiday-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    background: #f8f9fa;
+    border-radius: 15px;
+    border-left: 4px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+.holiday-item:hover {
+    background: #e9ecef;
+    transform: translateX(10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.holiday-icon {
+    font-size: 2.5rem;
+    animation: rotate-icon 3s ease-in-out infinite;
+}
+
+@keyframes rotate-icon {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(20deg);
+    }
+}
+
+.holiday-info {
+    flex: 1;
+}
+
+.holiday-info h5 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.holiday-info p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.holiday-info i {
+    margin-right: 5px;
+}
+
+.holiday-countdown {
+    text-align: center;
+}
+
+.holiday-countdown .badge {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ============================================================
+   INFO ALERTS Y NOTES
+   ============================================================ */
+.info-alert {
+    background: #e7f3ff;
+    border-left: 4px solid #0066cc;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    gap: 1rem;
+}
+
+.info-alert i {
+    font-size: 1.5rem;
+    margin-top: 3px;
+}
+
+.info-alert p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.service-note {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+}
+
+/* ============================================================
+   TIPS BANNER
+   ============================================================ */
+.tips-banner {
+    background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 20px rgba(255, 193, 7, 0.3);
+}
+
+.tips-content {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    color: white;
+}
+
+.tips-content i {
+    font-size: 3rem;
+    animation: pulse-light 2s ease-in-out infinite;
+}
+
+@keyframes pulse-light {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
+
+.tips-content h5 {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.tips-content p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ============================================================
+   SPINNER DE CARGA
+   ============================================================ */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.3rem;
+}
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+.btn-outline-primary {
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    transform: scale(1.05);
+}
+
+.btn-outline-primary i {
+    transition: transform 0.3s ease;
+}
+
+.btn-outline-primary:hover i {
+    transform: rotate(180deg);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 992px) {
+    .info-card-body {
+        padding: 1.5rem;
+    }
+    
+    .holiday-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .holiday-countdown {
+        margin-top: 0.5rem;
+    }
+    
+    .tips-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .info-card-header h4 {
+        font-size: 1.1rem;
+    }
+    
+    .from-currency .amount,
+    .to-currency .amount {
+        font-size: 1.2rem;
+    }
+    
+    .conversion-arrow i {
+        font-size: 2rem;
+    }
+    
+    .holiday-icon {
+        font-size: 2rem;
+    }
+}
+
+/* ============================================================
+   ANIMACIONES PERSONALIZADAS
+   ============================================================ */
+.animate-in {
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

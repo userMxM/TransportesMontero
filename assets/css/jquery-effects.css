@@ -1,0 +1,282 @@
+.navbar-scrolled {
+    background-color: rgba(0, 40, 80, 0.98) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease;
+    padding: 10px 0 !important;
+}
+
+.navbar-scrolled .sitename {
+    font-size: 1.3rem !important;
+    transition: font-size 0.3s ease;
+}
+
+
+/* ============================================================
+   2. EFECTOS HOVER EN CARDS DE SERVICIOS
+   ============================================================ */
+.services .card {
+    transition: all 0.4s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.card-hover-effect {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+.services .card .card-img {
+    overflow: hidden;
+}
+
+.services .card .card-img img {
+    transition: transform 0.4s ease;
+}
+
+
+/* ============================================================
+   3. ANIMACIÓN BOUNCE PARA ESTADÍSTICAS
+   ============================================================ */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(50px);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.stats-item {
+    transition: all 0.3s ease;
+}
+
+.stats-item:hover {
+    transform: scale(1.1);
+    cursor: default;
+}
+
+
+/* ============================================================
+   4. BOTÓN SCROLL TOP MEJORADO
+   ============================================================ */
+#scroll-top {
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#scroll-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+#scroll-top:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 15px rgba(0, 123, 255, 0.3);
+}
+
+
+/* ============================================================
+   5. NAVEGACIÓN ACTIVA
+   ============================================================ */
+.navmenu a {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.navmenu a.active {
+    color: #007bff !important;
+    font-weight: 600;
+}
+
+.navmenu a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #007bff;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+
+/* ============================================================
+   6. EFECTO PARALLAX EN HERO
+   ============================================================ */
+.hero-bg {
+    will-change: transform, opacity;
+    transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+}
+
+
+/* ============================================================
+   7. BOTONES CON HOVER MEJORADO
+   ============================================================ */
+.btn, .btn-getstarted {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before, .btn-getstarted::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before, .btn-getstarted:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+
+/* ============================================================
+   8. ICONOS SOCIALES CON EFECTO
+   ============================================================ */
+.social-links a {
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-links a:hover {
+    animation: pulse 0.6s ease;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+
+/* ============================================================
+   9. FADE IN INICIAL DEL BODY
+   ============================================================ */
+body {
+    animation: fadeInBody 0.6s ease;
+}
+
+@keyframes fadeInBody {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* ============================================================
+   10. MENÚ MÓVIL MEJORADO
+   ============================================================ */
+@media (max-width: 1199px) {
+    .navmenu ul {
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-toggle {
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-toggle:hover {
+        transform: rotate(90deg);
+    }
+}
+
+
+/* ============================================================
+   11. EFECTOS PARA CAROUSEL INDICATORS
+   ============================================================ */
+.carousel-indicators button {
+    transition: all 0.3s ease;
+}
+
+.carousel-indicators button:hover {
+    transform: scale(1.2);
+}
+
+.carousel-indicators button.active {
+    background-color: #007bff !important;
+}
+
+
+/* ============================================================
+   12. SMOOTH SCROLL BEHAVIOR
+   ============================================================ */
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* ============================================================
+   13. LOADING DE IMÁGENES
+   ============================================================ */
+img {
+    transition: opacity 0.5s ease;
+}
+
+img.loading {
+    opacity: 0.3;
+}
+
+img.loaded {
+    opacity: 1;
+}
+
+
+/* ============================================================
+   14. FOOTER LINKS CON HOVER
+   ============================================================ */
+.footer a {
+    transition: all 0.3s ease;
+}
+
+.footer a:hover {
+    transform: translateX(5px);
+    color: #007bff !important;
+}
+
+
+/* ============================================================
+   15. RESPONSIVE ADJUSTMENTS
+   ============================================================ */
+@media (max-width: 768px) {
+    .card-hover-effect {
+        transform: translateY(-5px);
+    }
+    
+    .navbar-scrolled {
+        padding: 5px 0 !important;
+    }
+}

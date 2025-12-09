@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Servicios - Transportes Montero S.A</title>
+  <meta name="description" content="Servicios de transporte, mudanza y carga pesada">
+  <meta name="keywords" content="transporte, logística, envío, mudanza, carga, cotización">
+
+  <!-- Favicons -->
+ <link href="assets/img/logoTM.png" rel="icon">
+  <link href="assets/img/logoTM.png" rel="apple-touch-icon">
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Archivos CSS de proveedores -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Archivo CSS principal -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    /* Estilos adicionales para la galería */
+    .gallery-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .gallery-card img {
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .service-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .loading-spinner {
+      text-align: center;
+      padding: 50px 0;
+    }
+
+    .loading-spinner .spinner-border {
+      width: 3rem;
+      height: 3rem;
+      color: #0052ff;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-card img {
+        height: 250px !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="services-page">
+
+  <!-- ======= Encabezado ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename text-primary fw-bold">Transportes Montero S.A</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="about.html">Nosotros</a></li>
+          <li><a href="services.html" class="active">Servicios</a></li>
+          <li><a href="contact.html">Contacto</a></li>
+          <li><a href="developer.html">Desarrollador</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="#cotizar">Cotizar Envío</a>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- ======= Título de página ======= -->
+    <div class="page-title dark-background" data-aos="fade"
+      style="background-image: url(assets/img/page-title-bg.jpg);">
+      <div class="container position-relative">
+        <h1>Servicios</h1>
+        <p>Explorá nuestros servicios especializados en transporte, logística y mudanzas personalizadas.</p>
+      </div>
+    </div>
+
+    <!-- ======= Servicios (Cargados dinámicamente desde services.json) ======= -->
+    <section id="services" class="services section">
+      <div class="container section-title" data-aos="fade-up">
+        <span>Nuestros Servicios</span>
+        <h2>Servicios que ofrecemos</h2>
+        <p>Elegí el tipo de servicio que más se adapte a tus necesidades.</p>
+      </div>
+
+      <div class="container">
+        <!-- Contenedor dinámico para servicios -->
+        <div class="row gy-4" id="servicios-container">
+          <!-- Loading spinner -->
+          <div class="col-12 loading-spinner">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Cargando servicios...</span>
+            </div>
+            <p class="mt-3 text-muted">Cargando servicios desde JSON...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= Cotizar Envío Section ======= -->
+    <section id="cotizar" class="section py-5">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title text-center mb-5">
+          <h2>Cotización</h2>
+          <p>Calculá el costo estimado de tu envío según la distancia, tipo de carga y servicios adicionales.</p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <form id="formCotizacion" class="p-4 bg-white shadow rounded">
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Tipo de servicio</label>
+                <select id="servicio" class="form-select">
+                  <option value="">Seleccione un servicio</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Distancia estimada (km)</label>
+                <input type="number" id="distancia" class="form-control" placeholder="Ej: 80" min="1" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Tipo de carga</label>
+                <select id="tipoCarga" class="form-select">
+                  <option value="general">General</option>
+                  <option value="pesada">Pesada (+15%)</option>
+                  <option value="peligrosa">Peligrosa (+25%)</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">¿Requiere ayudantes?</label>
+                <select id="ayudantes" class="form-select">
+                  <option value="0">No</option>
+                  <option value="1">Sí (+₡10,000)</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Horas de espera (opcional)</label>
+                <input type="number" id="espera" class="form-control" placeholder="Ej: 2" min="0">
+              </div>
+
+              <div class="text-center mt-4">
+                <button type="button" id="btnCalcular" class="btn btn-primary px-4">
+                  <i class="bi bi-calculator"></i> Calcular costo
+                </button>
+              </div>
+
+              <div class="alert alert-info mt-4 text-center" id="resultado" style="display:none;"></div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+ <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer dark-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+
+        <!-- ===== Columna Izquierda ===== -->
+        <div class="col-lg-5 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename text-primary">Transportes Montero S.A</span>
+          </a>
+          <p>Más de 10 años transportando confianza a todo Costa Rica. Transporte de carga, maquinaria, materiales y
+            mudanzas.</p>
+
+          <div class="social-links d-flex mt-4">
+            <a href="https://www.facebook.com/losmantudoscr" target="_blank" title="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="mailto:monterosolisa@gmail.com" title="Email">
+              <i class="bi bi-envelope"></i>
+            </a>
+            <a href="tel:+50662075681" title="Teléfono">
+              <i class="bi bi-telephone"></i>
+            </a>
+            <a href="https://wa.me/50662075681?text=Hola,%20me%20gustaría%20solicitar%20información%20sobre%20sus%20servicios%20de%20transporte"
+              target="_blank" title="WhatsApp">
+              <i class="bi bi-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- ===== Columna Centro ===== -->
+        <div class="col-lg-3 footer-contact text-center text-md-start">
+          <h4>Contáctenos</h4>
+          <p>Heredia, Costa Rica</p>
+          <p><strong>Teléfono:</strong> 6207-5681</p>
+          <p><strong>Email:</strong> monterosolisa@gmail.com</p>
+
+          <a href="https://wa.me/50662075681?text=Hola,%20me%20gustaría%20solicitar%20información%20sobre%20sus%20servicios%20de%20transporte"
+            target="_blank" class="btn btn-success btn-sm mt-3">
+            <i class="bi bi-whatsapp"></i> Chatea con nosotros
+          </a>
+        </div>
+
+        <div
+          class="col-lg-4 footer-links d-flex flex-column align-items-center align-items-md-start text-center text-md-start">
+          <h5>🔗 Somos confiabilidad</h5>
+          <ul>
+            <li><a href="index.html">🏠 Inicio</a></li>
+            <li><a href="contact.html">📞 Contacto</a></li>
+            <li><a href="about.html">ℹ Nosotros</a></li>
+            <li><a href="services.html">🛒 Servicios</a></li>
+            <li><a href="developer.html">ℹ Autor</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Copyright ===== -->
+    <div class="container copyright text-center mt-4">
+      <p>© 2025 <strong class="sitename">Transportes Montero S.A</strong>. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+
+  <!-- Archivos JS de proveedores -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- ========================================================= -->
+  <!-- SCRIPTS MODULARIZADOS -->
+  <!-- ========================================================= -->
+  <script src="assets/js/services-config.js"></script>
+  <script src="assets/js/services-validaciones.js"></script>
+  <script src="assets/js/services-api.js"></script>
+  <script src="assets/js/services-ui.js"></script>
+  <script src="assets/js/services-cotizacion.js"></script>
+  <script src="assets/js/services-init.js"></script>
+
+</body>
+
+</html>

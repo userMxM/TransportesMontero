@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Contacto - Transportes Montero S.A</title>
+  <meta name="description"
+    content="Contáctanos para solicitar información sobre nuestros servicios de transporte de carga pesada.">
+
+  <!-- Favicons -->
+ <link href="assets/img/logoTM.png" rel="icon">
+  <link href="assets/img/logoTM.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Leaflet (MAPA GRATIS) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css">
+
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- EmailJS v4 (actualizado) -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <style>
+    #map {
+      height: 450px;
+      width: 100%;
+    }
+
+    /* Estilos para validaciones */
+    .is-invalid {
+      border-color: #dc3545 !important;
+    }
+
+    .is-valid {
+      border-color: #198754 !important;
+    }
+
+    .error-text {
+      color: #dc3545;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    .error-text.show {
+      display: block;
+    }
+  </style>
+</head>
+
+<body class="contact-page">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename text-primary fw-bold">Transportes Montero S.A</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="about.html">Nosotros</a></li>
+          <li><a href="services.html">Servicios</a></li>
+          <li><a href="contact.html" class="active">Contacto</a></li>
+          <li><a href="developer.html">Desarrollador</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="services.html#cotizar">Cotizar envío</a>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background">
+      <div class="container position-relative">
+        <h1>Contáctanos</h1>
+        <p>Completa el formulario o localízanos en el mapa para comunicarte con nuestro equipo.</p>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li class="current">Contacto</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="mb-4">
+          <h3 class="mb-3"><i class="bi bi-geo-alt-fill"></i> Geolocalización y Navegación</h3>
+
+          <div class="row g-2 mb-3">
+            <div class="col-md-3 col-6">
+              <button id="btnUbicacion" onclick="obtenerMiUbicacion()" class="btn btn-primary w-100">
+                <i class="bi bi-crosshair"></i> Mi Ubicación
+              </button>
+            </div>
+            <div class="col-md-3 col-6">
+              <button id="btnRuta" onclick="trazarRuta()" disabled class="btn btn-success w-100">
+                <i class="bi bi-map"></i> Trazar Ruta
+              </button>
+            </div>
+            <div class="col-md-3 col-6">
+              <button onclick="centrarEmpresa()" class="btn btn-info w-100">
+                <i class="bi bi-building"></i> Ver Empresa
+              </button>
+            </div>
+            <div class="col-md-3 col-6">
+              <button onclick="limpiarMapa()" class="btn btn-secondary w-100">
+                <i class="bi bi-x-circle"></i> Limpiar
+              </button>
+            </div>
+          </div>
+
+          <div class="alert alert-info" role="alert">
+            <p id="ubicacionText" class="mb-0">
+              <i class="bi bi-info-circle"></i> Haz clic en "Mi Ubicación" para detectar tu posición y calcular la ruta.
+            </p>
+          </div>
+        </div>
+
+        <!-- Mapa dinámico -->
+        <div id="map" class="mb-5"></div>
+
+        <div class="row gy-4">
+
+          <!-- Contact Info -->
+          <div class="col-lg-4">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>Ubicación</h3>
+                <p>Santa Lucía, Heredia, Costa Rica</p>
+              </div>
+            </div>
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Teléfono</h3>
+                <p><a href="tel:+50662075681">+506 6207 5681</a></p>
+              </div>
+            </div>
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Correo electrónico</h3>
+                <p><a href="mailto:monterosolisa@gmail.com">monterosolisa@gmail.com</a></p>
+              </div>
+            </div>
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="600">
+              <i class="bi bi-whatsapp flex-shrink-0"></i>
+              <div>
+                <h3>WhatsApp</h3>
+                <p><a href="https://wa.me/50662075681?text=Hola,%20necesito%20información" target="_blank">Chatea con
+                    nosotros</a></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="col-lg-8">
+            <form id="formContacto" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">Nombre completo *</label>
+                  <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre completo"
+                    required>
+                  <small class="error-text" id="error-nombre"></small>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">Teléfono *</label>
+                  <input type="tel" id="telefono" name="telefono" class="form-control"
+                    placeholder="Teléfono (8 dígitos)" required>
+                  <small class="error-text" id="error-telefono"></small>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">Correo electrónico *</label>
+                  <input type="email" id="correo" class="form-control" name="correo" placeholder="correo@ejemplo.com"
+                    required>
+                  <small class="error-text" id="error-correo"></small>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">Fecha de nacimiento *</label>
+                  <input type="date" id="fechaNacimiento" class="form-control" name="fechaNacimiento" required>
+                  <small class="error-text" id="error-fechaNacimiento"></small>
+                </div>
+
+                <input type="hidden" id="edadCalculada" name="edadCalculada">
+
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">Rango de ingreso mensual *</label>
+                  <select id="rangoIngreso" name="rangoIngreso" class="form-select" required>
+                    <option value="">Seleccione su rango</option>
+                    <option value="Menos de ₡300,000">Menos de ₡300,000</option>
+                    <option value="₡300,000 - ₡600,000">₡300,000 - ₡600,000</option>
+                    <option value="₡600,000 - ₡1,000,000">₡600,000 - ₡1,000,000</option>
+                    <option value="₡1,000,000 - ₡2,000,000">₡1,000,000 - ₡2,000,000</option>
+                    <option value="Más de ₡2,000,000">Más de ₡2,000,000</option>
+                  </select>
+                  <small class="error-text" id="error-rangoIngreso"></small>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">Grado académico *</label>
+                  <select id="gradoAcademico" name="gradoAcademico" class="form-select" multiple size="4" required>
+                    <option value="Primaria">Primaria</option>
+                    <option value="Secundaria">Secundaria</option>
+                    <option value="Técnico">Técnico</option>
+                    <option value="Bachillerato universitario">Bachillerato universitario</option>
+                    <option value="Licenciatura">Licenciatura</option>
+                    <option value="Maestría">Maestría</option>
+                    <option value="Doctorado">Doctorado</option>
+                  </select>
+                  <small class="text-muted d-block mt-1">Mantén presionado Ctrl (o Cmd en Mac) para seleccionar
+                    varios</small>
+                  <small class="error-text" id="error-gradoAcademico"></small>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">Género *</label><br>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="genero" value="Masculino" required>
+                    <label class="form-check-label">Masculino</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="genero" value="Femenino">
+                    <label class="form-check-label">Femenino</label>
+                  </div>
+                  <small class="error-text" id="error-genero"></small>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">Preferencia de contacto *</label><br>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="preferencia" value="Teléfono" required>
+                    <label class="form-check-label">Teléfono</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="preferencia" value="Correo">
+                    <label class="form-check-label">Correo</label>
+                  </div>
+                  <small class="error-text" id="error-preferencia"></small>
+                </div>
+
+                <div class="col-md-12">
+                  <label class="form-label fw-bold">Dirección *</label>
+                  <input type="text" id="direccion" class="form-control" name="direccion"
+                    placeholder="Provincia, cantón, distrito..." required>
+                  <small class="error-text" id="error-direccion"></small>
+                </div>
+
+                <div class="col-md-12">
+                  <label class="form-label fw-bold">Tipo de carga *</label>
+                  <select id="tipoCarga" name="tipoCarga" class="form-select" required>
+                    <option value="">Seleccione el tipo de carga</option>
+                    <option value="Liviana">Liviana</option>
+                    <option value="Pesada">Pesada</option>
+                    <option value="Peligrosa">Peligrosa</option>
+                  </select>
+                  <small class="error-text" id="error-tipoCarga"></small>
+                </div>
+
+                <div class="col-md-12">
+                  <label class="form-label fw-bold">Mensaje</label>
+                  <textarea id="mensaje" class="form-control" name="mensaje" rows="6"
+                    placeholder="Detalles adicionales sobre su solicitud"></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading" style="display:none;">Enviando mensaje...</div>
+                  <div class="error-message" style="display:none;"></div>
+                  <div class="sent-message" style="display:none;">✅ Tu mensaje ha sido enviado. ¡Gracias!</div>
+
+                  <button type="submit" class="btn btn-primary px-5 py-2">
+                    <i class="bi bi-send"></i> Enviar mensaje
+                  </button>
+                </div>
+
+              </div>
+            </form>
+          </div>
+    </section>
+
+  </main>
+
+ <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer dark-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+
+        <!-- ===== Columna Izquierda ===== -->
+        <div class="col-lg-5 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename text-primary">Transportes Montero S.A</span>
+          </a>
+          <p>Más de 10 años transportando confianza a todo Costa Rica. Transporte de carga, maquinaria, materiales y
+            mudanzas.</p>
+
+          <div class="social-links d-flex mt-4">
+            <a href="https://www.facebook.com/losmantudoscr" target="_blank" title="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="mailto:monterosolisa@gmail.com" title="Email">
+              <i class="bi bi-envelope"></i>
+            </a>
+            <a href="tel:+50662075681" title="Teléfono">
+              <i class="bi bi-telephone"></i>
+            </a>
+            <a href="https://wa.me/50662075681?text=Hola,%20me%20gustaría%20solicitar%20información%20sobre%20sus%20servicios%20de%20transporte"
+              target="_blank" title="WhatsApp">
+              <i class="bi bi-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- ===== Columna Centro ===== -->
+        <div class="col-lg-3 footer-contact text-center text-md-start">
+          <h4>Contáctenos</h4>
+          <p>Heredia, Costa Rica</p>
+          <p><strong>Teléfono:</strong> 6207-5681</p>
+          <p><strong>Email:</strong> monterosolisa@gmail.com</p>
+
+          <a href="https://wa.me/50662075681?text=Hola,%20me%20gustaría%20solicitar%20información%20sobre%20sus%20servicios%20de%20transporte"
+            target="_blank" class="btn btn-success btn-sm mt-3">
+            <i class="bi bi-whatsapp"></i> Chatea con nosotros
+          </a>
+        </div>
+
+        <div
+          class="col-lg-4 footer-links d-flex flex-column align-items-center align-items-md-start text-center text-md-start">
+          <h5>🔗 Somos confiabilidad</h5>
+          <ul>
+            <li><a href="index.html">🏠 Inicio</a></li>
+            <li><a href="contact.html">📞 Contacto</a></li>
+            <li><a href="about.html">ℹ Nosotros</a></li>
+            <li><a href="services.html">🛒 Servicios</a></li>
+            <li><a href="developer.html">ℹ Autor</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Copyright ===== -->
+    <div class="container copyright text-center mt-4">
+      <p>© 2025 <strong class="sitename">Transportes Montero S.A</strong>. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- EmailJS v4 (actualizado) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- ========================================================= -->
+  <!-- SCRIPTS MODULARIZADOS -->
+  <!-- ========================================================= -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/validaciones.js"></script>
+  <script src="assets/js/formulario.js"></script>
+  <script src="assets/js/maps.js"></script>
+  <script src="assets/js/main-init.js"></script>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- Leaflet Routing (Rutas) -->
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+</body>
+
+</html>
