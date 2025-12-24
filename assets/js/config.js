@@ -6,7 +6,7 @@ const CONFIG = {
   // EmailJS
   emailJS: {
     publicKey: "xeRPxJGFjFEyrII8Y",
-    serviceId: "service_yvxbnen",
+    serviceId: "service_z7yhkv5",
     templateId: "template_bbp5rzs"
   },
 
