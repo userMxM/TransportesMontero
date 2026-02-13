@@ -1,5 +1,7 @@
 const EXCHANGE_API_URL = 'https://api.exchangerate-api.com/v4/latest/USD';
-const HOLIDAYS_API_URL = 'https://date.nager.at/api/v3/PublicHolidays/2025/CR';
+const year = new Date().getFullYear();
+const HOLIDAYS_API_URL = `https://date.nager.at/api/v3/PublicHolidays/${year}/CR`;
+
 
 // ============================================================
 // 1. API DE TIPO DE CAMBIO
